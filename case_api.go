@@ -45,7 +45,7 @@ func (api CasesAPI) GetCasesAll(ctx context.Context, projectID uint, qry url.Val
 func (api CasesAPI) GetCases(ctx context.Context, projectID, limit, offset int, qry url.Values) (*GetCasesResponse, *http.Response, error) {
 	sreq := httpsimple.Request{
 		Method: http.MethodGet,
-		URL:    BuildAPIURL(api.client.sclient.BaseURL, APIPathCasesGet, int(projectID), limit, offset, qry),
+		URL:    BuildAPIURL(api.client.sclient.BaseURL, APIPathCasesGet, projectID, limit, offset, qry),
 	}
 	res := GetCasesResponse{}
 	if resp, err := api.client.sclient.Do(sreq); err != nil {
