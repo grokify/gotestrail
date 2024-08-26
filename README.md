@@ -10,6 +10,7 @@ Go Client for [TestRail API](https://support.testrail.com/hc/en-us/articles/7077
 ## Related Modules
 
 1. [`github.com/educlos/testrail`](https://github.com/educlos/testrail)
+1. [`github.com/qba73/tr`](https://github.com/qba73/tr)
 
  [used-by-svg]: https://sourcegraph.com/github.com/grokify/gotestrail/-/badge.svg
  [used-by-url]: https://sourcegraph.com/github.com/grokify/gotestrail?badge
