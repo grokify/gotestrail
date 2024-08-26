@@ -12,11 +12,11 @@ import (
 	"github.com/grokify/mogo/net/http/httpsimple"
 )
 
-type CasesAPI struct{ client *Client }
+type CaseAPI struct{ client *Client }
 
-func NewCasesAPI(client *Client) CasesAPI { return CasesAPI{client: client} }
+func NewCaseAPI(client *Client) CaseAPI { return CaseAPI{client: client} }
 
-func (api CasesAPI) GetCasesAll(ctx context.Context, projectID uint, qry url.Values) (*CaseSet, error) {
+func (api CaseAPI) GetCasesAll(ctx context.Context, projectID uint, qry url.Values) (*CaseSet, error) {
 	limit := LimitMax
 	offset := uint(0)
 	set := NewCaseSet()
@@ -42,7 +42,7 @@ func (api CasesAPI) GetCasesAll(ctx context.Context, projectID uint, qry url.Val
 	return set, nil
 }
 
-func (api CasesAPI) GetCases(ctx context.Context, projectID, limit, offset int, qry url.Values) (*GetCasesResponse, *http.Response, error) {
+func (api CaseAPI) GetCases(ctx context.Context, projectID, limit, offset int, qry url.Values) (*GetCasesResponse, *http.Response, error) {
 	sreq := httpsimple.Request{
 		Method: http.MethodGet,
 		URL:    BuildAPIURL(api.client.sclient.BaseURL, APIPathCasesGet, projectID, limit, offset, qry),

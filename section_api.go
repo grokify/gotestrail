@@ -11,11 +11,11 @@ import (
 	"github.com/grokify/mogo/net/http/httpsimple"
 )
 
-type SectionsAPI struct{ client *Client }
+type SectionAPI struct{ client *Client }
 
-func NewSectionsAPI(client *Client) SectionsAPI { return SectionsAPI{client: client} }
+func NewSectionAPI(client *Client) SectionAPI { return SectionAPI{client: client} }
 
-func (api SectionsAPI) GetSectionsAll(ctx context.Context, projectID uint, qry url.Values) (*SectionSet, error) {
+func (api SectionAPI) GetSectionsAll(ctx context.Context, projectID uint, qry url.Values) (*SectionSet, error) {
 	limit := LimitMax
 	offset := uint(0)
 	ss := NewSectionSet()
@@ -41,7 +41,7 @@ func (api SectionsAPI) GetSectionsAll(ctx context.Context, projectID uint, qry u
 	return ss, nil
 }
 
-func (api SectionsAPI) GetSections(ctx context.Context, projectID, limit, offset uint, qry url.Values) (*GetSectionsResponse, *http.Response, error) {
+func (api SectionAPI) GetSections(ctx context.Context, projectID, limit, offset uint, qry url.Values) (*GetSectionsResponse, *http.Response, error) {
 	sreq := httpsimple.Request{
 		Method: http.MethodGet,
 		URL:    BuildAPIURL(api.client.sclient.BaseURL, APIPathSectionsGet, int(projectID), int(limit), int(offset), qry),

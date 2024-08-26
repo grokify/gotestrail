@@ -10,11 +10,11 @@ import (
 	"github.com/grokify/mogo/net/http/httpsimple"
 )
 
-type CaseTypesAPI struct{ client *Client }
+type CaseTypeAPI struct{ client *Client }
 
-func NewCaseTypesAPI(client *Client) CaseTypesAPI { return CaseTypesAPI{client: client} }
+func NewCaseTypeAPI(client *Client) CaseTypeAPI { return CaseTypeAPI{client: client} }
 
-func (api CaseTypesAPI) GetCaseTypes(ctx context.Context) ([]CaseType, *http.Response, error) {
+func (api CaseTypeAPI) GetCaseTypes(ctx context.Context) ([]CaseType, *http.Response, error) {
 	sreq := httpsimple.Request{
 		Method: http.MethodGet,
 		URL:    BuildAPIURL(api.client.sclient.BaseURL, APIPathCaseTypesGet, -1, -1, -1, url.Values{}),

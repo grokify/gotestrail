@@ -11,10 +11,10 @@ import (
 )
 
 type Client struct {
-	sclient      httpsimple.Client
-	CasesAPI     CasesAPI
-	CaseTypesAPI CaseTypesAPI
-	SectionsAPI  SectionsAPI
+	sclient     httpsimple.Client
+	CaseAPI     CaseAPI
+	CaseTypeAPI CaseTypeAPI
+	SectionAPI  SectionAPI
 }
 
 func NewClient(serverURL, username, password string) (*Client, error) {
@@ -25,9 +25,9 @@ func NewClient(serverURL, username, password string) (*Client, error) {
 	}
 	sclient := httpsimple.NewClient(hclient, serverURL)
 	c.sclient = sclient
-	c.CasesAPI = NewCasesAPI(c)
-	c.CaseTypesAPI = NewCaseTypesAPI(c)
-	c.SectionsAPI = NewSectionsAPI(c)
+	c.CaseAPI = NewCaseAPI(c)
+	c.CaseTypeAPI = NewCaseTypeAPI(c)
+	c.SectionAPI = NewSectionAPI(c)
 	return c, nil
 }
 
