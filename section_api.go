@@ -15,7 +15,7 @@ type SectionAPI struct{ client *Client }
 
 func NewSectionAPI(client *Client) SectionAPI { return SectionAPI{client: client} }
 
-func (api SectionAPI) GetSectionsAll(ctx context.Context, projectID uint, qry url.Values) (*SectionSet, error) {
+func (api SectionAPI) GetSectionSetAll(ctx context.Context, projectID uint, qry url.Values) (*SectionSet, error) {
 	limit := LimitMax
 	offset := uint(0)
 	ss := NewSectionSet()
