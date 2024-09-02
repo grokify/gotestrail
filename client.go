@@ -5,6 +5,7 @@ import (
 	"net/url"
 	"strconv"
 
+	"github.com/grokify/goauth"
 	"github.com/grokify/goauth/authutil"
 	"github.com/grokify/mogo/net/http/httpsimple"
 	"github.com/grokify/mogo/net/urlutil"
@@ -29,6 +30,16 @@ func NewClient(serverURL, username, password string) (*Client, error) {
 	c.CaseTypeAPI = NewCaseTypeAPI(c)
 	c.SectionAPI = NewSectionAPI(c)
 	return c, nil
+}
+
+func NewClientFromGoauthCredentials(creds goauth.Credentials) (*Client, error) {
+	if creds.Type == goauth.TypeBasic && creds.Basic != nil {
+		return NewClient(creds.Basic.ServerURL, creds.Basic.Username, creds.Basic.Password)
+	} else if creds.Type == goauth.TypeBasic {
+		return nil, goauth.ErrBasicAuthNotPopulated
+	} else {
+		return nil, fmt.Errorf("auth type not supported (%s)", creds.Type)
+	}
 }
 
 func BuildAPIURL(baseURL, apiPath string, id, limit, offset int, qry url.Values) string {
