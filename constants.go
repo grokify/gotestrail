@@ -14,4 +14,8 @@ const (
 
 	ParamLimit  = "limit"
 	ParamOffset = "offset"
+
+	SlugCase     = "case"
+	SlugCaseType = "case_type"
+	SlugSection  = "section"
 )
