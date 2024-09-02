@@ -43,6 +43,17 @@ func ReadFileSectionSet(filename string) (*SectionSet, error) {
 	}
 }
 
+func (set *SectionSet) ReadFileJSON(filename string) error {
+	if new, err := ReadFileSectionSet(filename); err != nil {
+		return err
+	} else {
+		for k, v := range new.Sections {
+			set.Sections[k] = v
+		}
+	}
+	return nil
+}
+
 func (set *SectionSet) Add(sections ...Section) {
 	for _, s := range sections {
 		set.Sections[s.ID] = s

@@ -68,6 +68,17 @@ func ReadFileCaseSet(filename string) (*CaseSet, error) {
 	}
 }
 
+func (set *CaseSet) ReadFileJSON(filename string) error {
+	if new, err := ReadFileCaseSet(filename); err != nil {
+		return err
+	} else {
+		for k, v := range new.Cases {
+			set.Cases[k] = v
+		}
+	}
+	return nil
+}
+
 func (set *CaseSet) Add(c ...Case) {
 	for _, ci := range c {
 		set.Cases[ci.ID] = ci
