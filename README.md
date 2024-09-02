@@ -39,6 +39,17 @@ Create a file, e.g. `.goauth.json` to contain your credentials with [`GoAuth`](h
 }
 ```
 
+#### Code
+
+```
+import "github.com/grokify/gotestrail"
+
+func main() {
+	// ... get `goauth.Credentials`
+    client, err := gotestrail.NewClientFromGoauthCredentials(creds) // `creds` is a `goauth.Credentials{}`
+}
+```
+
 ## Related Modules
 
 1. [`github.com/educlos/testrail`](https://github.com/educlos/testrail)
