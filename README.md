@@ -7,6 +7,38 @@
 
 Go Client for [TestRail API](https://support.testrail.com/hc/en-us/articles/7077039051284-Accessing-the-TestRail-API#h_01J53NS432TJFBGHMFVVVEHPKQ).
 
+## Usage
+
+### Direct
+
+```
+import "github.com/grokify/gotestrail"
+
+func main() {
+    client, err := gotestrail.NewClient("https://mydomain.testrail.io/", "myusername", "mypassword")
+}
+```
+
+### GoAuth Credentials File
+
+#### .goauth.json
+
+Create a file, e.g. `.goauth.json` to contain your credentials with [`GoAuth`](https://github.com/grokify/goauth), e.g:
+
+```
+{
+	"credentials": {
+        "TESTRAIL": {
+            "type": "basic",
+            "service": "testrail",
+            "serverURL": "https://<mydomain>.testrail.io/",
+            "username": "<myusername>",
+            "password": "<mypassword>"
+        },
+	}
+}
+```
+
 ## Related Modules
 
 1. [`github.com/educlos/testrail`](https://github.com/educlos/testrail)
