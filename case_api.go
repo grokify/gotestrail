@@ -16,12 +16,12 @@ type CaseAPI struct{ client *Client }
 
 func NewCaseAPI(client *Client) CaseAPI { return CaseAPI{client: client} }
 
-func (api CaseAPI) GetCasesAll(ctx context.Context, projectID uint, qry url.Values) (*CaseSet, error) {
+func (api CaseAPI) GetCaseSetAll(ctx context.Context, projectID uint, qry url.Values) (*CaseSet, error) {
 	limit := LimitMax
 	offset := uint(0)
 	set := NewCaseSet()
 	for {
-		res, resp, err := api.GetCases(ctx, int(projectID), int(limit), int(offset), qry)
+		res, resp, err := api.GetCases(ctx, int(projectID), int(limit), int(offset), qry, true)
 		if err != nil {
 			return set, err
 		} else if resp.StatusCode >= 300 {
@@ -42,23 +42,31 @@ func (api CaseAPI) GetCasesAll(ctx context.Context, projectID uint, qry url.Valu
 	return set, nil
 }
 
-func (api CaseAPI) GetCases(ctx context.Context, projectID, limit, offset int, qry url.Values) (*GetCasesResponse, *http.Response, error) {
+func (api CaseAPI) GetWriteFileCaseSetAll(ctx context.Context, filename string, perm os.FileMode, prefix, indent string, projectID uint, qry url.Values) (*CaseSet, error) {
+	if set, err := api.GetCaseSetAll(ctx, projectID, qry); err != nil {
+		return nil, err
+	} else {
+		return set, set.WriteFileJSON(filename, perm, prefix, indent)
+	}
+}
+
+func (api CaseAPI) GetCases(ctx context.Context, projectID, limit, offset int, qry url.Values, parseResponse bool) (*GetCasesResponse, *http.Response, error) {
 	sreq := httpsimple.Request{
 		Method: http.MethodGet,
 		URL:    BuildAPIURL(api.client.sclient.BaseURL, APIPathCasesGet, projectID, limit, offset, qry),
 	}
-	res := GetCasesResponse{}
-	if resp, err := api.client.sclient.Do(sreq); err != nil {
+	resp, err := api.client.sclient.Do(sreq)
+	if err != nil {
 		return nil, nil, err
-	} else if b, err := io.ReadAll(resp.Body); err != nil {
+	} else if !parseResponse {
+		return nil, resp, err
+	}
+
+	res := GetCasesResponse{}
+	if b, err := io.ReadAll(resp.Body); err != nil {
 		return nil, nil, err
 	} else {
-		err := os.WriteFile("cases_temp.json", b, 0600)
-		if err != nil {
-			panic(err)
-		}
-		err = json.Unmarshal(b, &res)
-		return &res, resp, err
+		return &res, resp, json.Unmarshal(b, &res)
 	}
 }
 
