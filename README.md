@@ -5,7 +5,7 @@
 [![Docs][docs-godoc-svg]][docs-godoc-url]
 [![License][license-svg]][license-url]
 
-Go Client for [TestRail API](https://support.testrail.com/hc/en-us/articles/7077039051284-Accessing-the-TestRail-API#h_01J53NS432TJFBGHMFVVVEHPKQ).
+Go Client for [TestRail API](https://support.testrail.com/hc/en-us/categories/7076541806228-API-Manual).
 
 ## Usage
 
@@ -27,15 +27,17 @@ Create a file, e.g. `.goauth.json` to contain your credentials with [`GoAuth`](h
 
 ```
 {
-	"credentials": {
+    "credentials": {
         "TESTRAIL": {
             "type": "basic",
             "service": "testrail",
-            "serverURL": "https://<mydomain>.testrail.io/",
-            "username": "<myusername>",
-            "password": "<mypassword>"
-        },
-	}
+            "basic": {
+                "serverURL": "https://<mydomain>.testrail.io/",
+                "username": "<myusername>",
+                "password": "<mypassword>"
+            }
+        }
+    }
 }
 ```
 
