@@ -4,6 +4,7 @@ const (
 	IndexPath                   = "index.php?"
 	APIPathCasesGet             = "/api/v2/get_cases/"
 	APIPathCasesGetProjectID    = "/api/v2/get_cases/%d&limit=%d&offset=%d"
+	APIPathCaseFieldsGet        = "/api/v2/get_case_fields/"
 	APIPathCaseTypesGet         = "/api/v2/get_case_types/"
 	APIPathSectionsGet          = "/api/v2/get_sections/"
 	APIPathSectionsGetProjectID = "/api/v2/get_sections/%d&limit=%d&offset=%d"
