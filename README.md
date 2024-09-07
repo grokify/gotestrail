@@ -47,7 +47,7 @@ Create a file, e.g. `.goauth.json` to contain your credentials with [`GoAuth`](h
 import "github.com/grokify/gotestrail"
 
 func main() {
-	// ... get `goauth.Credentials`
+    // ... get `goauth.Credentials`
     client, err := gotestrail.NewClientFromGoauthCredentials(creds) // `creds` is a `goauth.Credentials{}`
 }
 ```
