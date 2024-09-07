@@ -11,7 +11,7 @@ Go Client for [TestRail API](https://support.testrail.com/hc/en-us/categories/70
 
 ### Direct
 
-```
+```go
 import "github.com/grokify/gotestrail"
 
 func main() {
@@ -25,7 +25,7 @@ func main() {
 
 Create a file, e.g. `.goauth.json` to contain your credentials with [`GoAuth`](https://github.com/grokify/goauth), e.g:
 
-```
+```json
 {
     "credentials": {
         "TESTRAIL": {
@@ -43,7 +43,7 @@ Create a file, e.g. `.goauth.json` to contain your credentials with [`GoAuth`](h
 
 #### Code
 
-```
+```go
 import "github.com/grokify/gotestrail"
 
 func main() {
