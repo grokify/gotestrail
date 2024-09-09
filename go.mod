@@ -4,8 +4,7 @@ go 1.22.6
 
 require (
 	github.com/grokify/goauth v0.22.0
-	github.com/grokify/mogo v0.64.10
-	github.com/jessevdk/go-flags v1.6.1
+	github.com/grokify/mogo v0.64.11
 )
 
 require (
