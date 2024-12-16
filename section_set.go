@@ -6,6 +6,8 @@ import (
 	"fmt"
 	"os"
 	"slices"
+	"strconv"
+	"strings"
 
 	"github.com/grokify/mogo/encoding/jsonutil"
 	"github.com/grokify/mogo/pointer"
@@ -116,15 +118,15 @@ func (set *SectionSet) Inflate() error {
 		if err := set.addParentChildMapping(pointer.Dereference(childSection.ParentID), childID); err != nil {
 			return err
 		}
-		childSection.Lineage = set.buildLineage(childID)
+		childSection.Lineage = set.BuildLineage(childID)
 		set.Sections[childID] = childSection
 	}
 	return nil
 }
 
-func (set *SectionSet) buildLineage(childID uint) Metadatas {
+func (set *SectionSet) BuildLineage(leafID uint) Metadatas {
 	var lineage Metadatas
-	curChildID := childID
+	curChildID := leafID
 	for {
 		if parentID, ok := set.getParentID(curChildID); ok {
 			parentName := ""
@@ -167,6 +169,24 @@ func (set *SectionSet) addParentChildMapping(parentID, childID uint) error {
 	}
 	set.Sections[parentID] = parentSection
 	return nil
+}
+
+func (set *SectionSet) LineageIDsStringToNames(lin, sep string) (string, error) {
+	ids := strings.Split(strings.TrimSpace(lin), ".")
+	var names []string
+	for _, id := range ids {
+		idint, err := strconv.Atoi(id)
+		if err != nil {
+			return "", err
+		}
+		iduint := uint(idint)
+		s, ok := set.Sections[iduint]
+		if !ok {
+			return "", errors.New("section not found")
+		}
+		names = append(names, s.Name)
+	}
+	return strings.Join(names, sep), nil
 }
 
 func (set *SectionSet) IDs() []uint { return maputil.Keys(set.Sections) }
