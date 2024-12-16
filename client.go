@@ -44,12 +44,12 @@ func NewClientFromGoauthCredentials(creds goauth.Credentials) (*Client, error) {
 
 func BuildAPIURL(baseURL, apiPath string, id, limit, offset int, qry url.Values) string {
 	if limit > 0 {
-		qry[ParamLimit] = []string{strconv.Itoa(limit)}
+		qry[QueryParamLimit] = []string{strconv.Itoa(limit)}
 	} else if limit == 0 {
-		qry[ParamLimit] = []string{strconv.Itoa(int(LimitMax))}
+		qry[QueryParamLimit] = []string{strconv.Itoa(int(LimitMax))}
 	}
 	if offset >= 0 {
-		qry[ParamOffset] = []string{strconv.Itoa(offset)}
+		qry[QueryParamOffset] = []string{strconv.Itoa(offset)}
 	}
 	var qryenc string
 	if len(qry) > 0 {

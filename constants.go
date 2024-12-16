@@ -11,10 +11,10 @@ const (
 
 	LimitMax uint = 250
 
-	ParamSuiteID = "suite_id"
-
-	ParamLimit  = "limit"
-	ParamOffset = "offset"
+	QueryParamLimit     = "limit"
+	QueryParamOffset    = "offset"
+	QueryParamSectionID = "section_id"
+	QueryParamSuiteID   = "suite_id"
 
 	SlugCase     = "case"
 	SlugCaseType = "case_type"
