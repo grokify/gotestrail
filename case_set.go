@@ -172,5 +172,5 @@ func (set *CaseSet) LineageStringsHistogram(sectionSet *SectionSet, strSep strin
 func (set *CaseSet) Len() uint { return uint(len(set.Cases)) }
 
 func (set *CaseSet) WriteFileJSON(filename string, perm os.FileMode, prefix, indent string) error {
-	return jsonutil.WriteFile(filename, set, prefix, indent, perm)
+	return jsonutil.MarshalFile(filename, set, prefix, indent, perm)
 }

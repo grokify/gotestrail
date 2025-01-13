@@ -193,5 +193,5 @@ func (set *SectionSet) IDs() []uint { return maputil.Keys(set.Sections) }
 func (set *SectionSet) Len() uint   { return uint(len(set.Sections)) }
 
 func (set *SectionSet) WriteFileJSON(filename string, perm os.FileMode, prefix, indent string) error {
-	return jsonutil.WriteFile(filename, set, prefix, indent, perm)
+	return jsonutil.MarshalFile(filename, set, prefix, indent, perm)
 }
