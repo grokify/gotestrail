@@ -59,8 +59,10 @@ func main() {
 
  [used-by-svg]: https://sourcegraph.com/github.com/grokify/gotestrail/-/badge.svg
  [used-by-url]: https://sourcegraph.com/github.com/grokify/gotestrail?badge
- [build-status-svg]: https://github.com/grokify/gotestrail/workflows/test/badge.svg
+ [build-status-svg]: https://github.com/grokify/gotestrail/actions/workflows/test.yaml/badge.svg?branch=main
  [build-status-url]: https://github.com/grokify/gotestrail/actions/workflows/test.yaml
+ [lint-status-svg]: https://github.com/grokify/gotestrail/actions/workflows/lint.yaml/badge.svg?branch=main
+ [lint-status-url]: https://github.com/grokify/gotestrail/actions/workflows/lint.yaml
  [goreport-svg]: https://goreportcard.com/badge/github.com/grokify/gotestrail
  [goreport-url]: https://goreportcard.com/report/github.com/grokify/gotestrail
  [docs-godoc-svg]: https://pkg.go.dev/badge/github.com/grokify/gotestrail
